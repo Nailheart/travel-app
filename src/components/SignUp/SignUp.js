@@ -1,5 +1,13 @@
 import { Link } from "react-router-dom";
 
+/** TODO: 
+  - форма містить такі поля:
+    - Full name
+    - Email
+    - Password - має бути від 3 до 20 символів
+  - усі поля є обов’язковими
+  - кнопка Sign In веде на сторінку /sign-in
+*/
 function SignUp() {
   return (
     <main className="sign-up-page">

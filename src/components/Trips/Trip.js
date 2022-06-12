@@ -1,8 +1,19 @@
+import Modal from "../Modal/Modal";
+
+/** TODO:
+  містить повну інформацію про подорож: 
+    - картинку
+    - назву
+    - тривалість
+    - складність
+    - опис та ціну
+  при натисканні кнопки Book a trip відкривається модальне вікно
+*/    
 function Trip(props) {
   const { img, title, duration, level, desc, price } = props;
 
   return (
-    <>
+    <main className="trip-page">
       <h1 className="visually-hidden">Trip</h1>
       <div className="trip">
         {/* TODO: fix img */}
@@ -23,7 +34,7 @@ function Trip(props) {
           <button className="trip__button button">Book a trip</button>
         </div>
       </div>
-    </>
+    </main>
   );
 }
 

@@ -9,6 +9,14 @@ import "./assets/css/style.css";
 
 // TODO: add webpack
 // TODO: use db
+/** TODO:
+  Додаток повинен містити такі сторінки:
+    /sign-up - сторінка регістрації
+    /sign-in - сторінка логіну
+    / - головна сторінка з карточками усіх поїздок, пошуком та фільтрами
+    /trip/:tripId - сторінка з інформацією про поїздку
+    /bookings - список бронювань поточного користувача
+*/
 function App() {
   return (
     <>
@@ -18,7 +26,7 @@ function App() {
         <Route path="/sign-up" element={ <SignUp /> } />
         <Route path="/bookings" element={ <Bookings /> } />
         {/* TODO: add route to trip */}
-        {/* <Route path="match/:tripID" element={ <Trip /> } /> */}
+        {/* <Route path="/trip/:tripId" element={ <Trip /> } /> */}
         <Route 
           path="*"
           element= {

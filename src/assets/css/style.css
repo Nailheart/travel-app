@@ -369,6 +369,7 @@ select {
 
 .footer__text {
   display: flex;
+  align-items: center;
   justify-content: center;
   gap: 7px;
 }

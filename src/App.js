@@ -1,4 +1,4 @@
-import { useLocation, Routes, Route, } from "react-router-dom";
+import { Routes, Route, } from "react-router-dom";
 import Header from "./components/Header/Header";
 import SingIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
@@ -8,7 +8,7 @@ import Bookings from "./components/Bookings/Bookings";
 import "./assets/css/style.css";
 
 // TODO: add webpack
-// TODO: use db
+// TODO: use data
 /** TODO:
   Додаток повинен містити такі сторінки:
     /sign-up - сторінка регістрації

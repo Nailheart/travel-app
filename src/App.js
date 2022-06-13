@@ -1,14 +1,15 @@
-import { Routes, Route, } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import SingIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
 import Filter from "./components/Filter/Filter";
 import Trips from "./components/Trips/Trips";
+import Trip from "./components/Trips/Trip";
 import Bookings from "./components/Bookings/Bookings";
+import dataTrips from "./dataTrips.json";
 import "./assets/css/style.css";
 
 // TODO: add webpack
-// TODO: use data
 /** TODO:
   Додаток повинен містити такі сторінки:
     /sign-up - сторінка регістрації
@@ -25,15 +26,14 @@ function App() {
         <Route path="/sign-in" element={ <SingIn /> } />
         <Route path="/sign-up" element={ <SignUp /> } />
         <Route path="/bookings" element={ <Bookings /> } />
-        {/* TODO: add route to trip */}
-        {/* <Route path="/trip/:tripId" element={ <Trip /> } /> */}
+        <Route path="/trip/:tripId" element={ <Trip trips={dataTrips} /> } />
         <Route 
           path="*"
           element= {
             <main>
               <h1 className="visually-hidden">Travel app</h1>
               <Filter />
-              <Trips />
+              {dataTrips.length ? <Trips trips={dataTrips} /> : null}
             </main>
           }
         />

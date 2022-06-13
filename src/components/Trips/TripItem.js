@@ -9,13 +9,11 @@ import { Link } from "react-router-dom";
     - кнопка, що веде на сторінку подорожі
 */
 function TripItem(props) {
-  const { img, title, duration, level, price } = props;
+  const { id, title, level, duration, price, image } = props.trip;
 
   return (
     <li className="trip-card">
-      {/* TODO: fix img src */}
-      <img src={img} alt="trip image" />
-      {/* <img src={`./assets/images/${img}`} alt="trip image" /> */}
+      <img src={image} alt="title" />
       <div className="trip-card__content">
         <div className="trip-info">
           <h3 className="trip-info__title">{title}</h3>
@@ -29,8 +27,7 @@ function TripItem(props) {
           <strong className="trip-price__value">{price}</strong>
         </div>
       </div>
-      {/* TODO: передавать props по клику */}
-      <Link className="button" to={`/${title.split(' ').join('')}`}>Discover a trip</Link>
+      <Link className="button" to={`/trip/${id}`}>Discover a trip</Link>
     </li>
   )
 }

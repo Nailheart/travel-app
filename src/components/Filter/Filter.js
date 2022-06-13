@@ -2,7 +2,7 @@
   блок з фільтрами містить:
     - поле пошуку
     - два селекти для вибору тривалості та рівня
-  при веденні значення в поле пошуку чи зміні фільтрів мають відображатися відповідні картки
+  при введенні значення в поле пошуку чи зміні фільтрів мають відображатися відповідні картки
 */
 function Filter() {
   return (
@@ -18,8 +18,8 @@ function Filter() {
           <select name="duration">
             <option value="">duration</option>
             <option value="0_x_5">&lt; 5 days</option>
-              <option value="5_x_10">&lt; 10 days</option>
-              <option value="10_x">&ge; 10 days</option>
+            <option value="5_x_10">&lt; 10 days</option>
+            <option value="10_x">&ge; 10 days</option>
           </select>
         </label>
         <label className="select">

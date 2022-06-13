@@ -24,6 +24,14 @@ function Trip(props) {
   const [guests, setGuests] = useState(1);
   const [totalPrice, setTotalPrice] = useState(price);
 
+  function setCurrentDate() {
+    const date = new Date();
+    const day = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`;
+    const month = date.getMonth() > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`;
+    const year = date.getFullYear();
+    return `${year}-${month}-${day}`;
+  }
+
   function toggleModal() {
     setShowModal(!showModal);
   }
@@ -76,7 +84,7 @@ function Trip(props) {
             </div>
             <label className="trip-popup__input input">
               <span className="input__heading">Date</span>
-              <input name="date" type="date" required />
+              <input name="date" type="date" min={setCurrentDate()} required />
             </label>
             <label className="trip-popup__input input">
               <span className="input__heading">Number of guests</span>

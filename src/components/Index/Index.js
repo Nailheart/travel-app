@@ -9,8 +9,10 @@ const Index = (props) => {
   function filterDuration(search, duration, level) {
     let data = props.trips;
 
+    // TODO: искать совпадения только с первого символа
     if (search) {
-      data = data.filter((item) => item.title.toLocaleLowerCase() === search.toLocaleLowerCase());
+      const re = new RegExp('' + search + '','i');
+      data = data.filter((item) => item.title.match(re));
     }
 
     if (level) {

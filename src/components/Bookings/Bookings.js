@@ -10,11 +10,12 @@ import data from "../../dataBookings.json";
     - кнопку для відміни бронювання у верхньому правому кутку - при натисканні карточка повинна зникати зі списку
 */
 function Bookings() {
+  const sortedData = data.sort((a, b) => new Date(a.date) - new Date(b.date));
   return (
     <main className="bookings-page">
       <h1 className="visually-hidden">Bookings</h1>
       <ul className="bookings__list">
-        { data.map((item) => {
+        { sortedData.map((item) => {
           return (
             <BookingsItems
               booking={item}

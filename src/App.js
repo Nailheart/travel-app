@@ -21,12 +21,12 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={ <Layout /> }>
-          <Route index element={ <Index /> } />
+          <Route index element={ <Index trips={dataTrips} /> } />
           <Route path="/sign-in" element={ <SingIn /> } />
           <Route path="/sign-up" element={ <SignUp /> } />
           <Route path="/bookings" element={ <Bookings /> } />
           <Route path="/trip/:tripId" element={ <Trip trips={dataTrips} /> } />
-          <Route path="*" element={ <Index /> } />
+          <Route path="*" element={ <Index trips={dataTrips} /> } />
         </Route>
       </Routes>
     </>

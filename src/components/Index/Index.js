@@ -1,14 +1,13 @@
 import { useState } from "react";
 import Trips from "../Trips/Trips";
-import dataTrips from "../../dataTrips.json";
 
-const Index = () => {
+const Index = (props) => {
   const [search, setSearch] = useState('');
   const [duration, setDuration] = useState('');
   const [level, setLevel] = useState('');
 
   function filterDuration(search, duration, level) {
-    let data = dataTrips;
+    let data = props.trips;
 
     if (search) {
       data = data.filter((item) => item.title.toLocaleLowerCase() === search.toLocaleLowerCase());
@@ -65,7 +64,7 @@ const Index = () => {
           </label>
         </form>
       </section>
-      {dataTrips.length ? <Trips trips={filterDuration(search, duration, level)} /> : null}
+      {props.trips.length ? <Trips trips={filterDuration(search, duration, level)} /> : null}
     </main>
   );
 }

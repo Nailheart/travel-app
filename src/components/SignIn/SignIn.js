@@ -18,9 +18,9 @@ function SingIn() {
         </label>
         <label className="trip-popup__input input">
           <span className="input__heading">Password</span>
-          <input name="password" type="password" autoComplete="new-password" required />
+          <input name="password" type="password" pattern=".{3,20}" autoComplete="new-password" required />
         </label>
-        <input className="button" type="submit" pattern=".{3,20}" value="Sign In" />
+        <input className="button" type="submit" value="Sign In" />
       </form>
       <span>
         Already have an account? <Link className="sign-in-form__link" to='/sign-up'>Sign Up</Link>

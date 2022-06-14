@@ -93,6 +93,7 @@ function Trip(props) {
                 type="number"
                 min="1"
                 max="10"
+                pattern="[0-9]{1,10}"
                 value={guests}
                 required 
                 onChange={changeHandler}

@@ -23,7 +23,7 @@ function SignUp() {
         </label>
         <label className="trip-popup__input input">
           <span className="input__heading">Password</span>
-          <input name="password" type="password" autoComplete="new-password" required />
+          <input name="password" type="password" pattern=".{3,20}" autoComplete="new-password" required />
         </label>
         <input className="button" type="submit" value="Sign Up" />
       </form>

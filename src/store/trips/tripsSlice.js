@@ -28,7 +28,7 @@ export const fetchTrip = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     const { token, id } = data;
     try {
-      const response = await fetch(`https://travel-app-api.glitch.me/api/v1/trips${id}`, {
+      const response = await fetch(`https://travel-app-api.glitch.me/api/v1/trips/${id}`, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
@@ -47,10 +47,21 @@ export const fetchTrip = createAsyncThunk(
   }
 );
 
+const setLoading = (state) => {
+  state.status = 'loading';
+  state.error = null;
+}
+
+const setError = (state, action) => {
+  state.status = 'rejected';
+  state.error = action.payload;
+}
+
 const tripSlice = createSlice({
   name: 'trips',
   initialState: {
     trips: [],
+    trip: {},
     status: null,
     error: null
   },
@@ -59,36 +70,24 @@ const tripSlice = createSlice({
       state.trips = action.payload.trips;
     },
     setTrip(state, action) {
-      state.trips = action.payload.trip;
+      state.trip = action.payload.trip;
     },
   },
   extraReducers: {
     // trips
-    [fetchTrips.pending]: (state) => {
-      state.status = 'loading';
-      state.error = null;
-    },
+    [fetchTrips.pending]: setLoading,
     [fetchTrips.fulfilled]: (state, action) => {
       state.status = 'resolved';
       state.trips = action.payload;
     },
-    [fetchTrips.rejected]: (state, action) => {
-      state.state = 'rejected';
-      state.error = action.payload;
-    },
+    [fetchTrips.rejected]: setError,
     // trip
-    [fetchTrip.pending]: (state) => {
-      state.status = 'loading';
-      state.error = null;
-    },
+    [fetchTrip.pending]: setLoading,
     [fetchTrip.fulfilled]: (state, action) => {
       state.status = 'resolved';
-      state.trips = action.payload;
+      state.trip = action.payload;
     },
-    [fetchTrip.rejected]: (state, action) => {
-      state.state = 'rejected';
-      state.error = action.payload;
-    }
+    [fetchTrip.rejected]: setError
   },
 });
 

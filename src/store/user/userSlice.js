@@ -44,6 +44,16 @@ export const register = createAsyncThunk(
   }
 );
 
+const setLoading = (state) => {
+  state.status = 'loading';
+  state.error = null;
+}
+
+const setError = (state, action) => {
+  state.status = 'rejected';
+  state.error = action.payload;
+}
+
 const userSlice = createSlice({
   name: 'user',
   initialState: {
@@ -63,36 +73,23 @@ const userSlice = createSlice({
       state.status = null;
     }
   },
-  // TODO: need refactoring
   extraReducers: {
     // login
-    [login.pending]: (state) => {
-      state.status = 'loading';
-      state.error = null;
-    },
+    [login.pending]: setLoading,
     [login.fulfilled]: (state, action) => {
       state.status = 'resolved';
       state.user = action.payload.user;
       state.token = action.payload.token;
     },
-    [login.rejected]: (state, action) => {
-      state.state = 'rejected';
-      state.error = action.payload;
-    },
+    [login.rejected]: setError,
     // register
-    [register.pending]: (state) => {
-      state.status = 'loading';
-      state.error = null;
-    },
+    [register.pending]: setLoading,
     [register.fulfilled]: (state, action) => {
       state.status = 'resolved';
       state.user = action.payload.user;
       state.token = action.payload.token;
     },
-    [register.rejected]: (state, action) => {
-      state.state = 'rejected';
-      state.error = action.payload;
-    }
+    [register.rejected]: setError
   },
 });
 

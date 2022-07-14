@@ -1,13 +1,5 @@
 import { Link } from "react-router-dom";
 
-/** TODO:
-  картка подорожі містить такі елементи:
-    - картинка
-    - назва подорожі
-    - інформація про подорож - тривалість та складність
-    - ціна подорожі
-    - кнопка, що веде на сторінку подорожі
-*/
 function TripItem(props) {
   const { id, title, level, duration, price, image } = props.trip;
 

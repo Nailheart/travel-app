@@ -1,23 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useAuth } from "../../hooks/useAuth";
+import { fetchTrip } from "../../store/trips/tripsSlice";
+import { addBooking } from "../../store/bookings/bookingsSlice";
 
-/** TODO:
-  містить повну інформацію про подорож: 
-    - картинку
-    - назву
-    - тривалість
-    - складність
-    - опис та ціну
-  при натисканні кнопки Book a trip відкривається модальне вікно
-*/
-function Trip(props) {
+function Trip() {
+  const dispatch = useDispatch();
+  const { token } = useAuth();
   const { tripId } = useParams();
-  let trip;
-  props.trips.forEach((tripItem) => {
-    if (tripItem.id === tripId) {
-      trip = tripItem;
-    }
-  });
+  const data = {
+    id: tripId,
+    token
+  }
+  const trip = useSelector(state => state.trips.trip);
+
+  useEffect(() => {
+    dispatch(fetchTrip(data));
+  }, [dispatch]);
 
   const { image, title, duration, level, description, price } = trip;
   const [showModal, setShowModal] = useState(false);
@@ -32,13 +32,19 @@ function Trip(props) {
     return `${year}-${month}-${day}`;
   }
 
-  function toggleModal() {
+  const toggleModal = () => {
     setShowModal(!showModal);
   }
 
-  function changeHandler(e) {
+  const changeHandler = (e) => {
     setGuests(e.currentTarget.value)
     setTotalPrice(e.currentTarget.value * price);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // TODO: add booking
+    // dispatch(addBooking(trip));
   }
 
   return (
@@ -74,7 +80,11 @@ function Trip(props) {
       <div className="modal" style={{display: showModal ? "" : "none"}}>
         <div className="trip-popup">
           <button className="trip-popup__close" onClick={toggleModal}>×</button>
-          <form className="trip-popup__form" autoComplete="off">
+          <form 
+            className="trip-popup__form"
+            autoComplete="off"
+            onSubmit={handleSubmit}
+          >
             <div className="trip-info">
               <h3 className="trip-info__title">{title}</h3>
               <div className="trip-info__content">

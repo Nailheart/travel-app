@@ -11,7 +11,7 @@ function SingIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const user = { email, password }
     dispatch(login(user));

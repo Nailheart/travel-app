@@ -1,15 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTrips } from "../../store/trips/tripsSlice";
+import { useAuth } from "../../hooks/useAuth";
 import Trips from "../Trips/Trips";
 
-const Index = (props) => {
+const Index = () => {
+  const dispatch = useDispatch();
+  const trips = useSelector(state => state.trips.trips);
+  const { token } = useAuth();
   const [search, setSearch] = useState('');
   const [duration, setDuration] = useState('');
   const [level, setLevel] = useState('');
 
-  function filterDuration(search, duration, level) {
-    let data = props.trips;
+  useEffect(() => {
+    dispatch(fetchTrips(token));
+  }, [dispatch]);
 
-    // TODO: искать совпадения только с первого символа
+  const filterDuration = (search, duration, level) => {
+    let data = trips;
+
     if (search) {
       const re = new RegExp('' + search + '','i');
       data = data.filter((item) => item.title.match(re));
@@ -66,7 +75,7 @@ const Index = (props) => {
           </label>
         </form>
       </section>
-      {props.trips.length ? <Trips trips={filterDuration(search, duration, level)} /> : null}
+      {trips.length ? <Trips trips={filterDuration(search, duration, level)} /> : null}
     </main>
   );
 }

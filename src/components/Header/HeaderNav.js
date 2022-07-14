@@ -1,6 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { removeUser } from "../../store/user/userSlice";
 
 function HeaderNav() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(removeUser());
+    navigate('/sing-in');
+  };
+
   return (
     <nav className="header__nav">
       <ul className="nav-header__list">
@@ -17,7 +27,12 @@ function HeaderNav() {
             <ul className="profile-nav__list">
               <li className="profile-nav__item profile-nav__username">John Doe</li>
               <li className="profile-nav__item">
-                <Link className="profile-nav__sign-out button" to="/sign-in">Sign Out</Link>
+                <button 
+                  className="profile-nav__sign-out button"
+                  onClick={handleLogout}
+                >
+                  Sign Out
+                </button>
               </li>
             </ul>
           </div>
